@@ -1,0 +1,18 @@
+#!/bin/bash
+# a script for switching git identities
+
+if [ -z "$1" ];
+then
+	echo "Enter a git username to switch to.";
+else
+	file="$HOME/.ssh/$1"
+	if test -f $file; then
+		echo "Switching to git for $1."
+		eval `ssh-agent -s`
+		ssh-add -D
+		ssh-add $HOME/.ssh/$1
+	else
+		echo "$file is not an ssh key."
+	fi
+fi
+
