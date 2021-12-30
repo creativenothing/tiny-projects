@@ -8,7 +8,7 @@ else
 	file="$HOME/.ssh/$1"
 	if test -f $file; then
 		echo "Switching to git for $1."
-		eval `ssh-agent -s`
+		ssh-agent -s
 		ssh-add -D
 		ssh-add $HOME/.ssh/$1
 	else
